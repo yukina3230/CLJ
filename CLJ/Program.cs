@@ -1,8 +1,11 @@
-﻿namespace CLJ;
+﻿using CLJ.UI;
+
+namespace CLJ;
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        MainUI UI = new MainUI();
+        UI.ShowMainUI();
     }
 }
