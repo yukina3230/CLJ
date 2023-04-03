@@ -80,7 +80,7 @@ public partial class MainUI
         qty = service.Authorize<int>("- Enter Product Quantity: ", @"^[0-9]+$");
         
         // Enter Price
-        price = service.Authorize<double>("- Enter Product Price (USD): ", @"^[0-9]+(\.[0-9]+)?$");
+        price = service.Authorize<double>("- Enter Product Price: ", @"^[0-9]+(\.[0-9]+)?$");
         
         // Create Product Object and Enter Weight
         if (type == "d" || type == "D")
