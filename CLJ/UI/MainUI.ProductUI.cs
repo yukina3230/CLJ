@@ -108,9 +108,9 @@ public partial class MainUI
         
         HeaderText("EDIT PRODUCTS");
         
-        if (service.GetProductList.Count > 0)
+        if (service.ProductList.Count > 0)
         {
-            service.LoadProductList(service.GetProductList);
+            service.LoadProductList(service.ProductList);
             
             // Select Product to Edit
             bool valid;

@@ -71,7 +71,7 @@ public partial class MainUI
                 int selectIndex = service.Authorize<int>("\nSelect a product you want to add. (1, 2, 3, ...): ", @"^[0-9]+$");
                 itemIndex = selectIndex - 1;
                     
-                if (selectIndex <= 0 || selectIndex > service.GetProductList.Count)
+                if (selectIndex <= 0 || selectIndex > service.ProductList.Count)
                 {
                     Console.Write("You selected a product that is not on the list. Please try again!");
                     Console.ReadKey();

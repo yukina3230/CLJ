@@ -48,7 +48,7 @@ public partial class MainUI
     private string ShowProductCount()
     {
         string result = "";
-        if (service.GetProductList.Count > 0) result = $"(Total Products: {service.GetProductList.Count})";
+        if (service.ProductList.Count > 0) result = $"(Total Products: {service.ProductList.Count})";
         return result;
     }
     
