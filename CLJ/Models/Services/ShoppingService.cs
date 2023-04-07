@@ -39,10 +39,10 @@ public class ShoppingService
 
     public void AddProductToCurrentCart(int productIndex, string msg)
     {
-        var product = GetProductList[productIndex];
+        var product = ProductList[productIndex];
         ((IGiftable)product).SetMessage(msg);
 
-        foreach (var item in GetCartList)
+        foreach (var item in CartList)
         {
             if (item.CartID == CurrentCartID)
             {
@@ -55,13 +55,13 @@ public class ShoppingService
     
     public void AddCart()
     {
-        GetCartList.Add(new ShoppingCart() {CartID = GetCartList.Count + 1});
+        CartList.Add(new ShoppingCart() {CartID = CartList.Count + 1});
     }
 
     public double GetCartAmount(int cartID)
     {
         double result = 0;
-        foreach (var item in GetCartList)
+        foreach (var item in CartList)
         {
             if (item.CartID == cartID)
             {
@@ -73,11 +73,7 @@ public class ShoppingService
         return result;
     }
     
-    public int GetTotalCarts() => GetCartList.Count;
-
-    public List<Product> GetProductList => ProductList;
-
-    public List<ShoppingCart> GetCartList => CartList;
+    public int GetTotalCarts() => CartList.Count;
 
     public T Authorize<T>(string text, string regex)
     {
@@ -111,11 +107,11 @@ public class ShoppingService
         return (T)Convert.ChangeType(value, typeof(T));
     }
     
-    public void LoadProductList(List<Product> productList)
+    public void LoadProductList()
     {
         int index = 0;
         string represent = "";
-        foreach (var item in productList)
+        foreach (var item in ProductList)
         {
             if (item is PhysicalProduct)
             {
@@ -129,13 +125,13 @@ public class ShoppingService
     
     public void LoadProductInfo(int index)
     {
-        Console.WriteLine($"Name: {GetProductList[index].GetName()}.");
-        Console.WriteLine($"Description: {GetProductList[index].GetDescription()}.");
-        Console.WriteLine($"Quantity: {GetProductList[index].GetQuantity()}.");
-        Console.WriteLine($"Price: {GetProductList[index].GetPrice()}.");
-        if (GetProductList[index] is PhysicalProduct)
+        Console.WriteLine($"Name: {ProductList[index].GetName()}.");
+        Console.WriteLine($"Description: {ProductList[index].GetDescription()}.");
+        Console.WriteLine($"Quantity: {ProductList[index].GetQuantity()}.");
+        Console.WriteLine($"Price: {ProductList[index].GetPrice()}.");
+        if (ProductList[index] is PhysicalProduct)
         {
-            var product = GetProductList[index];
+            var product = ProductList[index];
             Console.WriteLine($"Weight: {((PhysicalProduct)product).GetWeight()}.");
             Console.WriteLine("Type: Physical.");
         }
@@ -153,8 +149,8 @@ public class ShoppingService
     {
         // Mark this cart is default
         string defaultCart = "";
-        GetCartList.Sort((x, y) => -x.CompareTo(y));
-        foreach (var item in GetCartList)
+        CartList.Sort((x, y) => -x.CompareTo(y));
+        foreach (var item in CartList)
         {
             if (item.CartID == CurrentCartID) defaultCart = "(Default)";
             else defaultCart = "";
