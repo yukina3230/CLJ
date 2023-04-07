@@ -110,7 +110,8 @@ public class ShoppingService
     public void LoadProductList()
     {
         int index = 0;
-        string represent = "";
+        string represent;
+
         foreach (var item in ProductList)
         {
             if (item is PhysicalProduct)
